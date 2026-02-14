@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HopeHands Foundation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 48px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+
+        .nav-logo .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: #1a1a2e;
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .btn-donate-nav {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-donate-nav:hover {
+            background: #1e2a6e;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 420px;
+            background: url('img/Depth 6, Frame 5.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            margin: 0 16px;
+            border-radius: 12px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            max-width: 520px;
+        }
+
+        .hero-content h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 14px;
+            margin-bottom: 24px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-hero-primary {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-hero-primary:hover {
+            background: #1e2a6e;
+        }
+
+        .btn-hero-secondary {
+            background: #fff;
+            color: #333;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-hero-secondary:hover {
+            background: #eee;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 60px 48px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+
+        /* ===== OUR MISSION ===== */
+        .mission p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* ===== OUR CAUSES ===== */
+        .causes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            margin-bottom: 36px;
+        }
+
+        .cause-card {
+            text-align: left;
+        }
+
+        .cause-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .cause-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #1a1a2e;
+        }
+
+        .cause-card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .causes-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-causes-primary {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 12px 36px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-causes-primary:hover {
+            background: #1e2a6e;
+        }
+
+        .btn-causes-secondary {
+            background: #fff;
+            color: #333;
+            padding: 12px 36px;
+            border: 2px solid #333;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-causes-secondary:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        /* ===== IMPACT SECTION ===== */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .impact-card {
+            background: #f8f9fa;
+            border-left: 4px solid #2d3a8c;
+            padding: 24px;
+            text-align: left;
+            border-radius: 4px;
+        }
+
+        .impact-card .label {
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .impact-card .value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-header img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-info .name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .testimonial-info .date {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .testimonial-stars {
+            color: #f5a623;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-card .quote {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .testimonial-actions {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .testimonial-actions span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #f8f9fa;
+            padding: 40px 48px 24px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 20px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .footer-socials a:hover {
+            background: #2d3a8c;
+            color: #fff;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"></div>
+            HopeHands Foundation
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="causes.html">Causes</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html"><button class="btn-donate-nav">Donate Now</button></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Together, We Can Change Lives</h1>
+            <p>Your kindness today can bring hope, health, and happiness to someone in need.</p>
+            <div class="hero-buttons">
+                <button class="btn-hero-primary">Donate Now</button>
+                <a href="volunteer.html"><button class="btn-hero-secondary">Become a Volunteer</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR MISSION -->
+    <section class="section mission">
+        <h2 class="section-title">Our Mission</h2>
+        <p>At HopeHands Foundation, our mission is to empower communities and transform lives through compassionate action and sustainable solutions. We are dedicated to providing essential resources, fostering education, and promoting well-being for those facing adversity. Together, we strive to build a brighter future, one hand at a time.</p>
+    </section>
+
+    <!-- OUR CAUSES -->
+    <section class="section causes">
+        <h2 class="section-title">Our Causes</h2>
+        <div class="causes-grid">
+            <div class="cause-card">
+                <img src="img/Depth 6, Frame 11.jpg" alt="Education for Children">
+                <h3>Education for Children</h3>
+                <p>Providing quality education and resources to underprivileged children, ensuring they have the opportunity to succeed.</p>
+            </div>
+            <div class="cause-card">
+                <img src="img/Depth 7, Frame 8.jpg" alt="Medical Support">
+                <h3>Medical Support</h3>
+                <p>Offering medical assistance and healthcare support to those in need, ensuring access to essential medical services.</p>
+            </div>
+            <div class="cause-card">
+                <img src="img/Depth 7, Frame 2.jpg" alt="Food & Shelter">
+                <h3>Food &amp; Shelter</h3>
+                <p>Providing food, shelter, and basic necessities to individuals and families facing hardship and homelessness.</p>
+            </div>
+            <div class="cause-card">
+                <img src="img/Depth 7, Frame 0.jpg" alt="Disaster Relief">
+                <h3>Disaster Relief</h3>
+                <p>Responding swiftly to natural disasters and providing immediate relief and long-term support to affected communities.</p>
+            </div>
+        </div>
+        <div class="causes-buttons">
+            <button class="btn-causes-primary">Donate</button>
+            <button class="btn-causes-secondary">Learn More</button>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section class="section impact">
+        <h2 class="section-title">Impact Section</h2>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="label">Lives Helped</div>
+                <div class="value">10,000+</div>
+            </div>
+            <div class="impact-card">
+                <div class="label">Volunteers</div>
+                <div class="value">500+</div>
+            </div>
+            <div class="impact-card">
+                <div class="label">Projects Completed</div>
+                <div class="value">120+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORIES / TESTIMONIALS -->
+    <section class="section testimonials">
+        <h2 class="section-title">Stories / Testimonials</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="img/Depth 8, Frame 0.jpg" alt="Sophia Carter">
+                    <div class="testimonial-info">
+                        <div class="name">Sophia Carter</div>
+                        <div class="date">2023-08-15</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="quote">"HopeHands Foundation has truly made a difference in my life. Their support helped me get back on my feet during a difficult time."</p>
+                <div class="testimonial-actions">
+                    <span><i class="fas fa-thumbs-up"></i> 12</span>
+                    <span><i class="fas fa-thumbs-down"></i> 2</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="img/Depth 7, Frame 4.jpg" alt="Ethan Bennett">
+                    <div class="testimonial-info">
+                        <div class="name">Ethan Bennett</div>
+                        <div class="date">2023-07-22</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="quote">"Volunteering with HopeHands has been an incredibly rewarding experience. Seeing the impact we make is truly inspiring."</p>
+                <div class="testimonial-actions">
+                    <span><i class="fas fa-thumbs-up"></i> 15</span>
+                    <span><i class="fas fa-thumbs-down"></i> 1</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="img/Depth 7, Frame 5.jpg" alt="Olivia Hayes">
+                    <div class="testimonial-info">
+                        <div class="name">Olivia Hayes</div>
+                        <div class="date">2023-06-10</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="quote">"The dedication and compassion of HopeHands Foundation are unmatched. They are a beacon of hope for so many."</p>
+                <div class="testimonial-actions">
+                    <span><i class="fas fa-thumbs-up"></i> 10</span>
+                    <span><i class="fas fa-thumbs-down"></i> 3</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Our Programs</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="footer-copy">&copy; 2024 HopeHands Foundation. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

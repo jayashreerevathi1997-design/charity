@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer - HopeHands Foundation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 48px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+
+        .nav-logo .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: #1a1a2e;
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .btn-donate-nav {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-donate-nav:hover {
+            background: #1e2a6e;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 380px;
+            background: url('img/Depth 4, Frame 0.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 8px 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 13px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .btn-hero {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-hero:hover {
+            background: #2d3a8c;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 50px 48px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+
+        /* ===== VOLUNTEER INTRO ===== */
+        .volunteer-intro p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+            max-width: 720px;
+        }
+
+        .volunteer-image {
+            margin-top: 32px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .volunteer-image img {
+            width: 100%;
+            max-width: 660px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* ===== WAYS YOU CAN HELP ===== */
+        .ways-section {
+            padding: 40px 48px;
+        }
+
+        .ways-grid {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .way-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a2e;
+            white-space: nowrap;
+        }
+
+        .way-card .way-icon {
+            font-size: 16px;
+        }
+
+        .way-card:nth-child(1) .way-icon { color: #2d3a8c; }
+        .way-card:nth-child(2) .way-icon { color: #2d8c3d; }
+        .way-card:nth-child(3) { background: #2d3a8c; color: #fff; }
+        .way-card:nth-child(3) .way-icon { color: #fff; }
+        .way-card:nth-child(4) .way-icon { color: #e67e22; }
+        .way-card:nth-child(5) .way-icon { color: #2d3a8c; }
+
+        /* ===== FORM SECTION ===== */
+        .form-section {
+            padding: 40px 48px 60px;
+        }
+
+        .form-section .section-title {
+            margin-bottom: 24px;
+        }
+
+        .volunteer-form {
+            max-width: 560px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2d3a8c;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '\f0dc';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        .form-group select {
+            color: #999;
+            cursor: pointer;
+        }
+
+        .form-group select:valid {
+            color: #333;
+        }
+
+        .btn-submit {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            margin: 28px auto 0;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #1e2a6e;
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #e74c3c;
+        }
+
+        .form-group.error .error-msg {
+            display: block;
+        }
+
+        .btn-submit.success {
+            background: #27ae60;
+            pointer-events: none;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #f8f9fa;
+            padding: 40px 48px 24px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 20px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .footer-socials a:hover {
+            background: #2d3a8c;
+            color: #fff;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"></div>
+            HopeHands Foundation
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="causes.html">Causes</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html"><button class="btn-donate-nav">Donate Now</button></a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Be the Change. Become a Volunteer.</h1>
+            <p>Your time, skills, and compassion can bring real change to lives that need support.</p>
+            <a href="#volunteer-form"><button class="btn-hero">Join as a Volunteer</button></a>
+        </div>
+    </section>
+
+    <!-- VOLUNTEER PROGRAM INTRO -->
+    <section class="section volunteer-intro">
+        <h2 class="section-title">Volunteer Program Introduction</h2>
+        <p>At HopeHands Foundation, volunteers are the heart of everything we do. Whether you have time, skills, or simply a kind heart, your contribution can help us reach more lives and create lasting impact.</p>
+        <div class="volunteer-image">
+            <img src="img/Depth 5, Frame 2.jpg" alt="Volunteers team">
+        </div>
+    </section>
+
+    <!-- WAYS YOU CAN HELP -->
+    <section class="ways-section">
+        <h2 class="section-title">Ways You Can Help</h2>
+        <div class="ways-grid">
+            <div class="way-card">
+                <span class="way-icon"><i class="fas fa-graduation-cap"></i></span>
+                Education Support
+            </div>
+            <div class="way-card">
+                <span class="way-icon"><i class="fas fa-heartbeat"></i></span>
+                Medical Assistance
+            </div>
+            <div class="way-card">
+                <span class="way-icon"><i class="fas fa-utensils"></i></span>
+                Food Distribution
+            </div>
+            <div class="way-card">
+                <span class="way-icon"><i class="fas fa-calendar-check"></i></span>
+                Event Coordination
+            </div>
+            <div class="way-card">
+                <span class="way-icon"><i class="fas fa-globe"></i></span>
+                Online / Remote Volunteering
+            </div>
+        </div>
+    </section>
+
+    <!-- VOLUNTEER FORM -->
+    <section class="form-section" id="volunteer-form">
+        <h2 class="section-title">Join Our Volunteer Community</h2>
+        <form class="volunteer-form" id="volunteerForm" novalidate>
+            <div class="form-group" id="nameGroup">
+                <input type="text" id="fullName" placeholder="Full Name">
+                <p class="error-msg">Please enter your full name</p>
+            </div>
+            <div class="form-group" id="emailGroup">
+                <input type="email" id="email" placeholder="Email Address">
+                <p class="error-msg">Please enter a valid email address</p>
+            </div>
+            <div class="form-group" id="phoneGroup">
+                <input type="tel" id="phone" placeholder="Phone Number">
+                <p class="error-msg">Please enter a valid phone number (10 digits)</p>
+            </div>
+            <div class="form-group" id="interestGroup">
+                <div class="select-wrapper">
+                    <select id="interest">
+                        <option value="" disabled selected>Area of Interest</option>
+                        <option value="education">Education Support</option>
+                        <option value="medical">Medical Assistance</option>
+                        <option value="food">Food Distribution</option>
+                        <option value="events">Event Coordination</option>
+                        <option value="remote">Online / Remote Volunteering</option>
+                    </select>
+                </div>
+                <p class="error-msg">Please select an area of interest</p>
+            </div>
+            <div class="form-group" id="availGroup">
+                <div class="select-wrapper">
+                    <select id="availability">
+                        <option value="" disabled selected>Availability</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="weekends">Weekends</option>
+                        <option value="flexible">Flexible</option>
+                        <option value="fulltime">Full Time</option>
+                    </select>
+                </div>
+                <p class="error-msg">Please select your availability</p>
+            </div>
+            <button type="submit" class="btn-submit" id="submitBtn">Become a Volunteer</button>
+            <p class="form-note">We respect your time and privacy. Our team will contact you soon.</p>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Our Programs</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="footer-copy">&copy; 2024 HopeHands Foundation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('volunteerForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showError(groupId) {
+            document.getElementById(groupId).classList.add('error');
+        }
+
+        function clearError(groupId) {
+            document.getElementById(groupId).classList.remove('error');
+        }
+
+        // Clear errors on input
+        document.getElementById('fullName').addEventListener('input', () => clearError('nameGroup'));
+        document.getElementById('email').addEventListener('input', () => clearError('emailGroup'));
+        document.getElementById('phone').addEventListener('input', () => clearError('phoneGroup'));
+        document.getElementById('interest').addEventListener('change', () => clearError('interestGroup'));
+        document.getElementById('availability').addEventListener('change', () => clearError('availGroup'));
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const interest = document.getElementById('interest').value;
+            const availability = document.getElementById('availability').value;
+
+            let isValid = true;
+
+            // Name validation
+            if (name === '') {
+                showError('nameGroup');
+                isValid = false;
+            } else {
+                clearError('nameGroup');
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '' || !emailRegex.test(email)) {
+                showError('emailGroup');
+                isValid = false;
+            } else {
+                clearError('emailGroup');
+            }
+
+            // Phone validation (10 digits)
+            const phoneRegex = /^\d{10}$/;
+            if (phone === '' || !phoneRegex.test(phone)) {
+                showError('phoneGroup');
+                isValid = false;
+            } else {
+                clearError('phoneGroup');
+            }
+
+            // Area of interest validation
+            if (!interest) {
+                showError('interestGroup');
+                isValid = false;
+            } else {
+                clearError('interestGroup');
+            }
+
+            // Availability validation
+            if (!availability) {
+                showError('availGroup');
+                isValid = false;
+            } else {
+                clearError('availGroup');
+            }
+
+            if (isValid) {
+                submitBtn.textContent = 'You have been added to our team!';
+                submitBtn.classList.add('success');
+                submitBtn.disabled = true;
+            }
+        });
+    </script>
+
+</body>
+</html>

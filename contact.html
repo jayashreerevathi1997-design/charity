@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - HopeHands Foundation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 48px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+
+        .nav-logo .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: #1a1a2e;
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .nav-links a.active {
+            color: #1a1a2e;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .btn-donate-nav {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-donate-nav:hover {
+            background: #1e2a6e;
+        }
+
+        /* ===== GET IN TOUCH ===== */
+        .contact-header {
+            text-align: center;
+            padding: 40px 48px 24px;
+        }
+
+        .contact-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        /* ===== CONTACT INFO CARDS ===== */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding: 0 48px 32px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .contact-card i {
+            color: #2d3a8c;
+            font-size: 16px;
+        }
+
+        /* ===== MAP ===== */
+        .map-section {
+            width: 100%;
+        }
+
+        .map-section img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* ===== SUPPORT & TRUST ===== */
+        .support-section {
+            padding: 40px 48px;
+        }
+
+        .support-section h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .support-section > p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 16px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .badge i {
+            font-size: 16px;
+        }
+
+        .badge.green {
+            color: #27ae60;
+        }
+
+        .badge.green i {
+            color: #27ae60;
+        }
+
+        .badge.blue {
+            color: #2d3a8c;
+        }
+
+        .badge.blue i {
+            color: #2d3a8c;
+        }
+
+        .badge.red {
+            color: #e74c3c;
+        }
+
+        .badge.red i {
+            color: #e74c3c;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #f8f9fa;
+            padding: 40px 48px 24px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 20px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .footer-socials a:hover {
+            background: #2d3a8c;
+            color: #fff;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"></div>
+            HopeHands Foundation
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="causes.html">Causes</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="donate.html"><button class="btn-donate-nav">Donate Now</button></a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTACT HEADER -->
+    <div class="contact-header">
+        <h1>Get in Touch With Us</h1>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div class="contact-info">
+        <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            support@hopehands.org
+        </div>
+        <div class="contact-card">
+            <i class="fas fa-phone"></i>
+            +91 98765 43210
+        </div>
+        <div class="contact-card">
+            <i class="fas fa-location-dot"></i>
+            Chennai, India
+        </div>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-section">
+        <img src="img/Depth 5, Frame 3.jpg" alt="Chennai Map">
+    </div>
+
+    <!-- SUPPORT & TRUST -->
+    <section class="support-section">
+        <h2>Support &amp; Trust</h2>
+        <p>We believe in transparency, trust, and people-powered change. Every volunteer helps us move closer to a better future.</p>
+        <div class="trust-badges">
+            <div class="badge green">
+                <i class="fas fa-check-circle"></i>
+                Trusted by Volunteers
+            </div>
+            <div class="badge blue">
+                <i class="fas fa-users"></i>
+                Community Support
+            </div>
+            <div class="badge red">
+                <i class="fas fa-heart"></i>
+                Making a Difference
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Our Programs</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="footer-copy">&copy; 2024 HopeHands Foundation. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

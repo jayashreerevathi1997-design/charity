@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - HopeHands Foundation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 48px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+
+        .nav-logo .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: #1a1a2e;
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .nav-links a.active {
+            color: #1a1a2e;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .btn-donate-nav {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-donate-nav:hover {
+            background: #1e2a6e;
+        }
+
+        /* ===== PAGE CONTENT ===== */
+        .donate-page {
+            padding: 40px 48px 60px;
+            max-width: 720px;
+        }
+
+        .donate-page h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+        }
+
+        .donate-page > p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        /* ===== DONOR INFO ===== */
+        .section-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            max-width: 400px;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2d3a8c;
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #e74c3c;
+        }
+
+        .form-group.error .error-msg {
+            display: block;
+        }
+
+        /* ===== DONATION AMOUNT ===== */
+        .amount-section {
+            margin-top: 32px;
+        }
+
+        .amount-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+            margin-bottom: 20px;
+        }
+
+        .amount-btn {
+            padding: 10px 22px;
+            border: 2px solid #333;
+            border-radius: 20px;
+            background: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        .amount-btn:hover,
+        .amount-btn.selected {
+            background: #2d3a8c;
+            border-color: #2d3a8c;
+            color: #fff;
+        }
+
+        .custom-amount {
+            display: none;
+            margin-bottom: 16px;
+        }
+
+        .custom-amount.show {
+            display: block;
+        }
+
+        .custom-amount input {
+            width: 200px;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        .custom-amount input:focus {
+            border-color: #2d3a8c;
+        }
+
+        /* ===== CAUSE SELECT ===== */
+        .cause-select {
+            margin-bottom: 24px;
+        }
+
+        .cause-select select {
+            width: 240px;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
+            cursor: pointer;
+        }
+
+        .cause-select select:focus {
+            border-color: #2d3a8c;
+        }
+
+        /* ===== SUBMIT ===== */
+        .donate-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            max-width: 400px;
+        }
+
+        .btn-donate-submit {
+            background: #2d3a8c;
+            color: #fff;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-donate-submit:hover {
+            background: #1e2a6e;
+        }
+
+        .btn-donate-submit.success {
+            background: #27ae60;
+            pointer-events: none;
+        }
+
+        .btn-donate-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .donate-note {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #f8f9fa;
+            padding: 40px 48px 24px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 20px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2d3a8c;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .footer-socials a:hover {
+            background: #2d3a8c;
+            color: #fff;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"></div>
+            HopeHands Foundation
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="causes.html">Causes</a></li>
+            <li><a href="donate.html" class="active">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html"><button class="btn-donate-nav">Donate Now</button></a></li>
+        </ul>
+    </nav>
+
+    <!-- DONATE PAGE -->
+    <div class="donate-page">
+        <h1>Make a Difference Today</h1>
+        <p>Your generous donation will help us continue our mission to support communities in need. Choose an amount below or enter a custom amount to make a secure donation.</p>
+
+        <form id="donateForm" novalidate>
+            <!-- Donor Information -->
+            <h2 class="section-label">Donor Information</h2>
+            <div class="form-group" id="nameGroup">
+                <input type="text" id="donorName" placeholder="Name">
+                <p class="error-msg">Please enter your name</p>
+            </div>
+            <div class="form-group" id="emailGroup">
+                <input type="email" id="donorEmail" placeholder="Email">
+                <p class="error-msg">Please enter a valid email address</p>
+            </div>
+            <div class="form-group" id="addressGroup">
+                <input type="text" id="donorAddress" placeholder="Address">
+                <p class="error-msg">Please enter your address</p>
+            </div>
+
+            <!-- Select Donation Amount -->
+            <div class="amount-section">
+                <h2 class="section-label">Select Donation Amount</h2>
+                <div class="amount-buttons">
+                    <button type="button" class="amount-btn" data-amount="500">&#8377;500</button>
+                    <button type="button" class="amount-btn" data-amount="1000">&#8377;1000</button>
+                    <button type="button" class="amount-btn" data-amount="2000">&#8377;2000</button>
+                    <button type="button" class="amount-btn" id="customBtn" data-amount="custom">Custom</button>
+                </div>
+                <div class="custom-amount" id="customAmount">
+                    <input type="number" id="customInput" placeholder="Enter amount (&#8377;)" min="1">
+                </div>
+                <p class="error-msg" id="amountError" style="display:none;">Please select or enter a donation amount</p>
+            </div>
+
+            <!-- Cause Selection -->
+            <div class="cause-select">
+                <select id="causeSelect">
+                    <option value="healthcare" selected>Healthcare For Children</option>
+                    <option value="education">Education For All</option>
+                    <option value="poverty">Poverty Relief</option>
+                    <option value="environment">Environmental Sustainability</option>
+                </select>
+            </div>
+
+            <!-- Submit -->
+            <div class="donate-actions">
+                <button type="submit" class="btn-donate-submit" id="donateBtn">Donate Securely</button>
+                <p class="donate-note">Your donation is safe with us. We use secure payment processing.</p>
+            </div>
+        </form>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+        </ul>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="footer-copy">&copy; 2024 HopeHands Foundation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('donateForm');
+        const donateBtn = document.getElementById('donateBtn');
+        const amountBtns = document.querySelectorAll('.amount-btn');
+        const customAmountDiv = document.getElementById('customAmount');
+        const customInput = document.getElementById('customInput');
+        const amountError = document.getElementById('amountError');
+        let selectedAmount = null;
+
+        // Amount button selection
+        amountBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                amountBtns.forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                amountError.style.display = 'none';
+
+                if (this.dataset.amount === 'custom') {
+                    customAmountDiv.classList.add('show');
+                    selectedAmount = 'custom';
+                } else {
+                    customAmountDiv.classList.remove('show');
+                    selectedAmount = this.dataset.amount;
+                }
+            });
+        });
+
+        function showError(groupId) {
+            document.getElementById(groupId).classList.add('error');
+        }
+
+        function clearError(groupId) {
+            document.getElementById(groupId).classList.remove('error');
+        }
+
+        // Clear errors on input
+        document.getElementById('donorName').addEventListener('input', () => clearError('nameGroup'));
+        document.getElementById('donorEmail').addEventListener('input', () => clearError('emailGroup'));
+        document.getElementById('donorAddress').addEventListener('input', () => clearError('addressGroup'));
+
+        // Read cause from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const causeParam = urlParams.get('cause');
+        if (causeParam) {
+            const causeSelect = document.getElementById('causeSelect');
+            if (causeSelect.querySelector('option[value="' + causeParam + '"]')) {
+                causeSelect.value = causeParam;
+            }
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('donorName').value.trim();
+            const email = document.getElementById('donorEmail').value.trim();
+            const address = document.getElementById('donorAddress').value.trim();
+
+            let isValid = true;
+
+            // Name
+            if (name === '') {
+                showError('nameGroup');
+                isValid = false;
+            } else {
+                clearError('nameGroup');
+            }
+
+            // Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '' || !emailRegex.test(email)) {
+                showError('emailGroup');
+                isValid = false;
+            } else {
+                clearError('emailGroup');
+            }
+
+            // Address
+            if (address === '') {
+                showError('addressGroup');
+                isValid = false;
+            } else {
+                clearError('addressGroup');
+            }
+
+            // Amount
+            if (!selectedAmount) {
+                amountError.style.display = 'block';
+                isValid = false;
+            } else if (selectedAmount === 'custom') {
+                const customVal = customInput.value.trim();
+                if (customVal === '' || Number(customVal) <= 0) {
+                    amountError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    amountError.style.display = 'none';
+                }
+            } else {
+                amountError.style.display = 'none';
+            }
+
+            if (isValid) {
+                donateBtn.textContent = 'Redirecting...';
+                donateBtn.classList.add('success');
+                donateBtn.disabled = true;
+                setTimeout(() => {
+                    window.location.href = 'thankyou.html';
+                }, 800);
+            }
+        });
+    </script>
+
+</body>
+</html>
